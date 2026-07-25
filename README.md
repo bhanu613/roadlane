@@ -4,6 +4,12 @@
 
 Detect lane lines in a road video using classical computer vision techniques (no deep learning), as a prototype for simple driver-assistance.
 
+### Project structure
+
+- `src/detector.py` – main lane detection script.
+- `data/test.mp4` – sample road video used for the demo.
+- `requirements.txt` – Python dependencies (`numpy`, `opencv-python`, `matplotlib`).
+
 ## Pipeline
 
 - Convert each frame to grayscale.
@@ -11,14 +17,6 @@ Detect lane lines in a road video using classical computer vision techniques (no
 - Mask a triangular region of interest focused on the road surface.
 - Use `cv2.HoughLinesP` to extract line segments corresponding to lane markings.
 - Draw the detected lane lines in green and overlay them on the original frame.
-
-## Results
-
-The script processes `test.mp4` frame by frame and displays an output video where the lane lines are highlighted in green:
-
-![IDE view](https://user-images.githubusercontent.com/57340784/206966352-b78ed02b-8185-4320-a74d-4e7f269d4e9f.png)
-
-![Lane detection output](https://user-images.githubusercontent.com/57340784/205434216-d103889b-d101-494e-b99a-605eb472693b.png)
 
 ## How to Run
 
@@ -83,8 +81,17 @@ You can also run the demo in a notebook environment without GUI windows:
    Video("output.mp4", embed=True)
    ```
 
-### Project structure
+## Results
 
-- `src/detector.py` – main lane detection script.
-- `data/test.mp4` – sample road video used for the demo.
-- `requirements.txt` – Python dependencies (`numpy`, `opencv-python`, `matplotlib`).
+![IDE view](https://user-images.githubusercontent.com/57340784/206966352-b78ed02b-8185-4320-a74d-4e7f269d4e9f.png)
+
+The script processes `test.mp4` frame by frame and displays an output video where the lane lines are highlighted in green:
+
+![Lane detection output](https://user-images.githubusercontent.com/57340784/205434216-d103889b-d101-494e-b99a-605eb472693b.png)
+
+- This demo uses a fixed triangular region of interest and simple thresholds, so it can struggle with unusual road markings, strong shadows, or bad weather.
+
+## Future work
+
+- Use deep learning–based segmentation for more robust lane detection.
+- Adapt the region of interest dynamically based on camera calibration.
