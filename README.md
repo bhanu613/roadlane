@@ -35,6 +35,36 @@ python src/detector.py
 
 Make sure you run this in an environment with GUI support so `cv2.imshow` windows can open.
 
+### Run in Google COlab (no GUI)
+
+```bash
+!git clone https://github.com/bhanu613/roadlane.git
+%cd roadlane
+!pip install -r requirements.txt
+
+In a new cell, run:
+
+from src.detector import process
+import cv2
+
+cap = cv2.VideoCapture('data/test.mp4')
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (1280, 720))
+while cap.isOpened():
+   ret, frame = cap.read()
+   if not ret:
+       break
+   processed = process(frame)
+   out.write(processed)
+cap.release()
+out.release()
+
+Display the saved video:
+
+from IPython.display import Video
+Video('output.mp4', embed=True)
+```
+
 ### Project structure
 
 - `src/detector.py` – main lane detection script.
