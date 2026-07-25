@@ -1,12 +1,23 @@
 # roadlane
-ROAD LANE LINE DETECTION
-machine learning project using python
-• Libraries used: numPy, OpenCV, matplotlib IDE used: Pycharm
-• It is critical component for self driving describing the path and avoids
-getting in another lane. Developed an algorithm fueled entirely by
-computer vision, reading‑decoding files then detecting markings on both
-sides on the lane; concepts used : frame masking, region of interest,
-grayscale imaging, canny edge detection and hough transformation.
+Problem: detect lane lines in road video using classical computer vision.
+
+Pipeline:
+
+Grayscale conversion.
+
+Canny edge detection.
+
+Triangular region of interest mask.
+
+HoughLinesP to extract line segments.
+
+Overlay green lines on original frame.
+
+How to run:
+
+pip install -r requirements.txt.
+
+python src/detector.py in a local environment with GUI support.
 
 ![image](https://user-images.githubusercontent.com/57340784/206966352-b78ed02b-8185-4320-a74d-4e7f269d4e9f.png)
 
