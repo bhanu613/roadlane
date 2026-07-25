@@ -37,33 +37,51 @@ Make sure you run this in an environment with GUI support so `cv2.imshow` window
 
 ### Run in Google Colab (no GUI)
 
-```bash
-!git clone https://github.com/bhanu613/roadlane.git
-%cd roadlane
-!pip install -r requirements.txt
+You can also run the demo in a notebook environment without GUI windows:
 
-In a new cell, run:
+1. Open a new Colab notebook.
+2. Clone the repo and install dependencies:
 
-import cv2
-from src.detector import process
+   ```python
+   !git clone https://github.com/yourusername/roadlane.git
+   %cd roadlane
+   !pip install -r requirements.txt
+   ```
 
-cap = cv2.VideoCapture('data/test.mp4')
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (1280, 720))
-while cap.isOpened():
+3. Run lane detection on the sample video and write the processed frames to `output.mp4`:
+
+   ```python
+   import cv2
+   from src.detector import process
+
+   cap = cv2.VideoCapture('data/test.mp4')
+
    ret, frame = cap.read()
    if not ret:
-       break
-   processed = process(frame)
-   out.write(processed)
-cap.release()
-out.release()
+       raise RuntimeError("Cannot read first frame from data/test.mp4")
 
-Display the saved video:
+   height, width = frame.shape[:2]
+   fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+   out = cv2.VideoWriter("output.mp4", fourcc, 20.0, (width, height))
 
-from IPython.display import Video
-Video('output.mp4', embed=True)
-```
+   out.write(process(frame))
+
+   while cap.isOpened():
+       ret, frame = cap.read()
+       if not ret:
+           break
+       out.write(process(frame))
+
+   cap.release()
+   out.release()
+   ```
+
+4. Download or display the video:
+
+   ```python
+   from IPython.display import Video
+   Video("output.mp4", embed=True)
+   ```
 
 ### Project structure
 
