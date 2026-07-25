@@ -10,13 +10,14 @@ def region_of_interest(img, vertices):
     masked_image = cv2.bitwise_and(img, mask)
     return masked_image
 
-def drow_the_lines(img, lines):
+def draw_the_lines(img, lines):
     img = np.copy(img)
     blank_image = np.zeros((img.shape[0], img.shape[1], 3), dtype=np.uint8)
 
-    for line in lines:
-        for x1, y1, x2, y2 in line:
-            cv2.line(blank_image, (x1,y1), (x2,y2), (0, 255, 0), thickness=10)
+    if lines is not None:
+        for line in lines:
+            for x1, y1, x2, y2 in line:
+                cv2.line(blank_image, (x1,y1), (x2,y2), (0, 255, 0), thickness=10)
 
     img = cv2.addWeighted(img, 0.8, blank_image, 1, 0.0)
     return img
@@ -43,18 +44,18 @@ def process(image):
                             lines=np.array([]),
                             minLineLength=40,
                             maxLineGap=100)
-    image_with_lines = drow_the_lines(image, lines)
+    image_with_lines = draw_the_lines(image, lines)
     return image_with_lines
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture('data/test.mp4')
-
     while cap.isOpened():
         ret, frame = cap.read()
+        if not ret:
+            break
         frame = process(frame)
         cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    
     cap.release()
     cv2.destroyAllWindows()
