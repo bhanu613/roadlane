@@ -46,14 +46,15 @@ def process(image):
     image_with_lines = drow_the_lines(image, lines)
     return image_with_lines
 
-cap = cv2.VideoCapture('data/test.mp4')
+if __name__ == "__main__":
+    cap = cv2.VideoCapture('data/test.mp4')
 
-while cap.isOpened():
-    ret, frame = cap.read()
-    frame = process(frame)
-    cv2.imshow('frame', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+    while cap.isOpened():
+        ret, frame = cap.read()
+        frame = process(frame)
+        cv2.imshow('frame', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    
+    cap.release()
+    cv2.destroyAllWindows()
