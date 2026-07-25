@@ -1,24 +1,42 @@
-# roadlane
-Problem: detect lane lines in road video using classical computer vision.
+# Road Lane Detection
 
-Pipeline:
+## Problem
 
-Grayscale conversion.
+Detect lane lines in a road video using classical computer vision techniques (no deep learning), as a prototype for simple driver-assistance.
 
-Canny edge detection.
+## Pipeline
 
-Triangular region of interest mask.
+- Convert each frame to grayscale.
+- Apply Canny edge detection to highlight strong edges.
+- Mask a triangular region of interest focused on the road surface.
+- Use `cv2.HoughLinesP` to extract line segments corresponding to lane markings.
+- Draw the detected lane lines in green and overlay them on the original frame.
 
-HoughLinesP to extract line segments.
+## Results
 
-Overlay green lines on original frame.
+The script processes `test.mp4` frame by frame and displays an output video where the lane lines are highlighted in green:
 
-How to run:
+![IDE view](https://user-images.githubusercontent.com/57340784/206966352-b78ed02b-8185-4320-a74d-4e7f269d4e9f.png)
 
-pip install -r requirements.txt.
+![Lane detection output](https://user-images.githubusercontent.com/57340784/205434216-d103889b-d101-494e-b99a-605eb472693b.png)
 
-python src/detector.py in a local environment with GUI support.
+## How to Run
 
-![image](https://user-images.githubusercontent.com/57340784/206966352-b78ed02b-8185-4320-a74d-4e7f269d4e9f.png)
+### Local setup
 
-![image](https://user-images.githubusercontent.com/57340784/205434216-d103889b-d101-494e-b99a-605eb472693b.png)
+```bash
+python -m venv venv
+source venv/bin/activate  # on Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+
+python src/detector.py
+```
+
+Make sure you run this in an environment with GUI support so `cv2.imshow` windows can open.
+
+### Project structure
+
+- `src/detector.py` – main lane detection script.
+- `data/test.mp4` – sample road video used for the demo.
+- `requirements.txt` – Python dependencies (`numpy`, `opencv-python`, `matplotlib`).
