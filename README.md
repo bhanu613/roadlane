@@ -35,7 +35,7 @@ python src/detector.py
 
 Make sure you run this in an environment with GUI support so `cv2.imshow` windows can open.
 
-### Run in Google COlab (no GUI)
+### Run in Google Colab (no GUI)
 
 ```bash
 !git clone https://github.com/bhanu613/roadlane.git
