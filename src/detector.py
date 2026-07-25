@@ -46,7 +46,7 @@ def process(image):
     image_with_lines = drow_the_lines(image, lines)
     return image_with_lines
 
-cap = cv2.VideoCapture('test.mp4')
+cap = cv2.VideoCapture('data/test.mp4')
 
 while cap.isOpened():
     ret, frame = cap.read()
