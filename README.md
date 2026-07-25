@@ -44,8 +44,8 @@ Make sure you run this in an environment with GUI support so `cv2.imshow` window
 
 In a new cell, run:
 
-from src.detector import process
 import cv2
+from src.detector import process
 
 cap = cv2.VideoCapture('data/test.mp4')
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
