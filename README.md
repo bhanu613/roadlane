@@ -95,3 +95,9 @@ The script processes `test.mp4` frame by frame and displays an output video wher
 
 - Use deep learning–based segmentation for more robust lane detection.
 - Adapt the region of interest dynamically based on camera calibration.
+
+## Tech stack
+
+- Python
+- OpenCV (image and video processing)
+- NumPy
