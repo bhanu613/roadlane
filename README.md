@@ -6,9 +6,9 @@ Detect lane lines in a road video using classical computer vision techniques (no
 
 ### Project structure
 
-- `src/detector.py` – main lane detection script.
-- `data/test.mp4` – sample road video used for the demo.
-- `requirements.txt` – Python dependencies (`numpy`, `opencv-python`, `matplotlib`).
+- `src/detector.py` : main lane detection script.
+- `data/test.mp4` : sample road video used for the demo.
+- `requirements.txt` : Python dependencies (`numpy`, `opencv-python`, `matplotlib`).
 
 ## Pipeline
 
